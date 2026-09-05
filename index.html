@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1203,8 +1202,7 @@ async function api(action, data){
 function loadState(){
   api('getState', { _initData: S.initData, _startParam: S.startParam }).then(function(res){
     if (!res || !res.success){
-       if (S.inTelegram) showLoadError((res && res.error) || 'Unable to load your Telegram account');
-      else showMockData();
+      showMockData();
       return;
     }
     S.data = res.data;
@@ -1215,8 +1213,7 @@ function loadState(){
     try { refreshTaskPriceLabels(); } catch(_){}
     startHeartbeat();
   }).catch(function(err){
-     if (S.inTelegram) showLoadError('Unable to connect to the server. Open the app from the bot button inside Telegram.');
-    else showMockData();
+    showMockData();
   });
 }
 
